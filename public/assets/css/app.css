@@ -1,0 +1,188 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #eeebf0;
+  position: relative;
+}
+
+.section {
+  height: 100%;
+}
+
+
+/**#69D2E7:#A7DBD8:#E0E4CC:#E0E4CC:#FA6900:#C02942:#542437:#53777A:#ECD078:#FE4365**/
+
+.section:nth-child(1) {
+  background-color: #69D2E7;
+}
+
+.section:nth-child(2) {
+  background-color: #A7DBD8;
+}
+
+.section:nth-child(3) {
+  background-color: #E0E4CC;
+}
+
+.section:nth-child(4) {
+  background-color: #FA6900;
+}
+
+.section:nth-child(5) {
+  background-color: #C02942;
+}
+
+.section:nth-child(6) {
+  background-color: #542437;
+}
+
+.section:nth-child(7) {
+  background-color: #53777A;
+}
+
+.section:nth-child(8) {
+  background-color: #ECD078;
+}
+
+.section:nth-child(9) {
+  background-color: #FE4365;
+}
+
+
+/** old **/
+
+.suggest-l {
+  width: 300px;
+  height: 300px;
+  background: transparent url("http://s.cdpn.io/6859/suggest.png") no-repeat center center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: 200px;
+  margin-top: -200px;
+}
+
+.iphone-l {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.iphone-l > .screen-ll {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 713px;
+  overflow: hidden;
+}
+
+.touch {
+  overflow: hidden !important;
+  border: 10px solid #f00;
+}
+
+#wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+#wrapper.is-with-scroll {
+  width: 100%;
+}
+
+#wrapper .menu-l {
+  position: relative;
+}
+
+#wrapper .menu-l.is-loaded {
+  background: #69d2e7;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: -moz-linear-gradient(top, #69d2e7 0%, #69d2e7 50%, #fe4365 51%, #fe4365 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #69d2e7), color-stop(50%, #69d2e7), color-stop(51%, #fe4365), color-stop(100%, #fe4365));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #69d2e7 0%, #69d2e7 50%, #fe4365 51%, #fe4365 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #69d2e7 0%, #69d2e7 50%, #fe4365 51%, #fe4365 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #69d2e7 0%, #69d2e7 50%, #fe4365 51%, #fe4365 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #69d2e7 0%, #69d2e7 50%, #fe4365 51%, #fe4365 100%);
+  /* W3C */
+}
+
+#wrapper .content-ll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-size: 25px;
+  line-height: 30px;
+  -webkit-transform: rotate3d(0, 0, 0);
+  -moz-transform: rotate3d(0, 0, 0);
+  -ms-transform: rotate3d(0, 0, 0);
+  -o-transform: rotate3d(0, 0, 0);
+  transform: rotate3d(0, 0, 0);
+}
+
+.section-b {
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+
+.section-b:active:after {
+  width: 100%;
+  height: 76px;
+  margin-top: -38px;
+  margin-left: -38px;
+  background-size: 100% 100%;
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  -o-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+
+.section-b.is-check {
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #f00;
+}
+
+.section-b:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  content: '';
+  width: 100px;
+  height: 100px;
+  background-size: 100% 100%;
+}
