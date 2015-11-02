@@ -24,11 +24,11 @@ self.addEventListener('fetch', function(event) {
     .then(function(response) {
       // Cache hit - return response
       if (response) {
-        console.log("Cache hit for '" + event.request.url + "'- return response");
+        console.log('Cache hit for \'' + event.request.url + '\'- return response');
         return response;
       }
 
-      console.log("Cache miss for '" + event.request.url + "'");
+      console.log('Cache miss for \'' + event.request.url + '\'');
 
       // IMPORTANT: Clone the request. A request is a stream and
       // can only be consumed once. Since we are consuming this
@@ -40,13 +40,13 @@ self.addEventListener('fetch', function(event) {
         function(response) {
           // Check if we received a valid response
           if (!response || response.status !== 200 || response.type !== 'basic') {
-            console.log("Invalid response for '" + event.request.url + "'");
+            console.log('Invalid response for \'' + event.request.url + '\'');
             return response;
           }
 
           // Cache only '/assets'
           if (event.request.url.indexOf('/assets') == -1) {
-            console.log("Not an asset '" + event.request.url + "'");
+            console.log('Not an asset \'' + event.request.url + '\'');
             return response;
           }
 
@@ -55,7 +55,7 @@ self.addEventListener('fetch', function(event) {
           // as well as the cache consuming the response, we need
           // to clone it so we have 2 stream.
           var responseToCache = response.clone();
-          console.log("Updating cache for '" + event.request.url + "'");
+          console.log('Updating cache for \'' + event.request.url + '\'');
           caches.open(CACHE_NAME)
             .then(function(cache) {
               cache.put(event.request, responseToCache);
