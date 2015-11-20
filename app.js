@@ -14,8 +14,6 @@ var urlencodedParser = bodyParser.urlencoded({
   extended: false
 });
 
-app.use(passport.initialize());
-
 app.get('/subscribe', router.subscribe);
 app.get('/login/:date', router.loginPage);
 app.post('/login', urlencodedParser, router.authenticate);
