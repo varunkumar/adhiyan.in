@@ -2,8 +2,6 @@ var express = require('express'),
   router = require('./router'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
-  passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy,
   app = express();
 
 app.set('view engine', 'jade');
