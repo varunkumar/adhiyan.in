@@ -67,3 +67,44 @@ self.addEventListener('fetch', function(event) {
     })
   );
 });
+
+self.addEventListener('push', function(event) {
+  console.log('Received a push message', event);
+
+  fetch('/notifications').then(function(response) {
+    if (response.status !== 200) {
+      console.log('Looks like there was a problem. Status Code: ' + response.status);
+      throw new Error();
+    }
+
+    return response.json().then(function(data) {
+      if (data.error || !data.notification) {
+        console.error('The API returned an error.', data.error);
+        throw new Error();
+      }
+
+      var title = data.notification.title;
+      var message = data.notification.message;
+      var icon = data.notification.icon;
+      var notificationTag = data.notification.tag;
+
+      return self.registration.showNotification(title, {
+        body: message,
+        icon: icon,
+        tag: notificationTag
+      });
+    });
+  }).catch(function(err) {
+    console.error('Unable to retrieve data', err);
+
+    var title = 'An error occurred';
+    var message = 'We were unable to get the information for this push message';
+    var icon = '/assets/favicons/android-icon-192x192.png';
+    var notificationTag = 'notification-error';
+    return self.registration.showNotification(title, {
+      body: message,
+      icon: icon,
+      tag: notificationTag
+    });
+  });
+});

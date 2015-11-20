@@ -2,10 +2,10 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     'useminPrepare': {
-      html: 'index.html',
+      html: 'public/index.html',
       options: {
-        root: './',
-        dest: './',
+        root: './public/',
+        dest: './public/',
         flow: {
           steps: {
             'js': ['uglifyjs'],
@@ -24,12 +24,12 @@ module.exports = function(grunt) {
       }
     },
     'usemin': {
-      html: 'index.html'
+      html: 'public/index.html'
     },
     copy: {
       main: {
-        src: 'index-src.html',
-        dest: 'index.html',
+        src: 'public/index-src.html',
+        dest: 'public/index.html',
       },
     }
   });
