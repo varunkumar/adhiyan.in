@@ -19,6 +19,7 @@ app.get('/login/:date', router.loginPage);
 app.post('/login', urlencodedParser, router.authenticate);
 app.get('/notifications', router.notifications);
 app.get('/push-notifications', router.pushNotifications);
+app.get('/data', router.babyTrackData);
 
 var server = app.listen(3700);
 

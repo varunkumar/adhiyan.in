@@ -115,3 +115,7 @@ exports.authenticate = function(req, res) {
     res.send('Incorrect username or password');
   }
 };
+
+exports.babyTrackData = function(req, res) {
+  res.redirect('https://docs.google.com/spreadsheets/d/1lZfJWfOgL2eXqibV4xJBncEZASMXnyVYYHzTaNVrtIQ');
+};
