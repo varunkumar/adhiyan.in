@@ -26,7 +26,7 @@ if (process.send) {
   process.send('online');
 }
 
-process.on('message', function() {
+process.on('message', function(message) {
   if (message === 'shutdown') {
     process.exit(0);
   }
