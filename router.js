@@ -11,6 +11,11 @@ var PushSubscriptionSchema = new Schema({
     required: true,
     trim: true
   },
+  device: {
+    type: String,
+    required: true,
+    trim: true
+  },
   endpoint: {
     type: String,
     required: true,
@@ -31,9 +36,11 @@ exports.subscribe = function(req, res) {
 
   if (cookies[secret.COOKIENAME] == secret.PASSWORD) {
     PushSubscription.update({
-      username: secret.USERNAME
+      username: secret.USERNAME,
+      device: cookies[secret.COOKIENAME + '_device']
     }, {
       username: secret.USERNAME,
+      device: cookies[secret.COOKIENAME + '_device'],
       endpoint: queryString.endpoint,
       subscription: queryString.subscription
     }, {
@@ -64,24 +71,30 @@ exports.notifications = function(req, res) {
 };
 
 exports.pushNotifications = function(req, res) {
-  PushSubscription.findOne({
+  PushSubscription.find({
     username: secret.USERNAME
-  }, function(err, doc) {
-    request.post(doc.endpoint, {
-      body: {
-        registration_ids: [doc.subscription]
-      },
-      json: true,
-      headers: {
-        'Authorization': secret.GCM_SERVER_KEY
+  }, function(err, docs) {
+    if (docs.length > 0) {
+      var subscriptionIds = [];
+      for (var i = 0; i < docs.length; i++) {
+        subscriptionIds.push(docs[i].subscription);
       }
-    }, function callback(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        res.json(doc);
-      } else {
-        res.status(400).json(doc);
-      }
-    });
+      request.post(docs[0].endpoint, {
+        body: {
+          registration_ids: subscriptionIds
+        },
+        json: true,
+        headers: {
+          'Authorization': secret.GCM_SERVER_KEY
+        }
+      }, function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          res.json(docs);
+        } else {
+          res.status(400).json(docs);
+        }
+      });
+    }
   });
 };
 
@@ -100,12 +113,14 @@ exports.loginPage = function(req, res) {
 exports.authenticate = function(req, res) {
   var username = req.body.username;
   var password = req.body.password;
-
-  console.log(secret);
-  console.log(username);
+  var device = req.body.device;
 
   if (username == secret.USERNAME && password == secret.PASSWORD) {
     res.cookie(secret.COOKIENAME, secret.PASSWORD, {
+      expires: new Date(1864000000000),
+      httpOnly: true
+    });
+    res.cookie(secret.COOKIENAME + '_device', device, {
       expires: new Date(1864000000000),
       httpOnly: true
     });
