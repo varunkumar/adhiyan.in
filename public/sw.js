@@ -1,6 +1,6 @@
 importScripts('/assets/js/serviceworker-cache-polyfill.js');
 
-var CACHE_NAME = 'adhiyan-cache-20160710';
+var CACHE_NAME = 'adhiyan-cache-20160711';
 var urlsToCache = [
   '/',
   '/index.html',
