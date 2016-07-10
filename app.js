@@ -5,9 +5,15 @@ var express = require('express'),
   app = express();
 
 app.set('view engine', 'jade');
-
-app.use(express.static('public'));
 app.use(cookieParser());
+app.use(function(req, res, next) {
+  if (req.path.indexOf('/one/assets') === 0) {
+    router.restrict(req, res);
+  }
+  next(); 
+});
+app.use(express.static('public'));
+
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({

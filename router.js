@@ -130,3 +130,17 @@ exports.authenticate = function(req, res) {
     res.send('Incorrect username or password');
   }
 };
+
+exports.restrict = function(req, res) {
+  if (req.cookies[secret.COOKIENAME]) {
+    return;
+  } else {
+    var date = req.params.date;
+    var expectedDate = moment().format('YYYYMMDD');
+    res.redirect('/login/' + expectedDate);
+  }
+}
+
+exports.test = function(req, res) {
+  res.json({hello: 'world!'});
+}
