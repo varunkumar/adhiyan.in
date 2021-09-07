@@ -16,5 +16,8 @@
     "moment": "2.29.1",
     "mongoose": "^5.12.7",
     "request": "2.88.2"
+  },
+  "devDependencies": {
+    "mpath": "^0.8.4"
   }
 }
