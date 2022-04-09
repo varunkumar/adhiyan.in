@@ -13,7 +13,7 @@
     "grunt-contrib-uglify": "^5.0.1",
     "grunt-usemin": "^0.1.13",
     "jade": "^0.29.0",
-    "moment": "2.29.1",
+    "moment": "2.29.2",
     "mongoose": "^5.12.7",
     "request": "2.88.2"
   },
